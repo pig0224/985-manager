@@ -181,7 +181,7 @@ Install_Manager(){
   echo "===================================================="
 
   if command -v 985 &>/dev/null; then
-    echo "Complated, 985-manager is installed."
+    echo "Complated, 985 Manager is installed."
     read -n 1 -p "Press any key back to menu..."
     start_menu
     return 0
@@ -210,10 +210,12 @@ Install_Manager(){
 
     echo "Configure system environment variables..."
     if ! grep -q "${NODE_DIR}/bin" /etc/profile; then
-      echo "export PATH=${NODE_DIR}/bin:\$PATH" >> /etc/profile
+    	echo "export PATH=${NODE_DIR}/bin:\$PATH" >> /etc/profile
+    	echo "export PATH=${NODE_DIR}/bin:\$PATH" >> ~/.bashrc
     fi
 
     source /etc/profile
+    source ~/.bashrc
     export PATH=${NODE_DIR}/bin:$PATH
 
     node --version
@@ -222,9 +224,9 @@ Install_Manager(){
 
   npm install -g 985-manager
   if [ $? -eq 0 ]; then
-    echo "✅ 985-manager Installed successfully"
+    echo "985 Manager Installed successfully"
   else
-    echo "❌ 985-manager Installation failed, please check the error message above."
+    echo "985 Manager Installation failed, please check the error message above."
   fi
 
   rm -f "${NODE_FILE}"
@@ -256,7 +258,7 @@ Uninstall_Manager(){
   fi
 
   if [ ! -d "${NODE_DIR}" ] && ! command -v node &>/dev/null; then
-    echo "Complated, 985-manager is not installed."
+    echo "Complated, 985 Manager is not installed."
     read -n 1 -p "Press any key back to menu..."
     start_menu
     return 0
@@ -269,7 +271,7 @@ Uninstall_Manager(){
   sed -i "/node-${NODE_VERSION}-linux-x64/d" /etc/profile
   source /etc/profile
 
-  echo "Complated, 985-manager has been uninstalled."
+  echo "Complated, 985 Manager has been uninstalled."
   read -n 1 -p "Press any key back to menu..."
   start_menu
 }
@@ -280,7 +282,7 @@ Start_Manager(){
   echo "====================================="
 
   if ! command -v 985 &>/dev/null; then
-    echo "985-manager has not been installed. Please Install Manager."
+    echo "985 Manager has not been installed. Please Install Manager."
     read -n 1 -p "Press any key back to menu..."
     start_menu
     return 1
@@ -290,7 +292,7 @@ Start_Manager(){
   if [[ "${status}" != "online" ]]; then
     985 start
   else
-    echo -e "${Tip} 985-manager is already running"
+    echo -e "${Tip} 985 Manager is already running"
   fi
 
   read -n 1 -p "Press any key back to menu..."
@@ -303,7 +305,7 @@ Stop_Manager(){
   echo "===================================="
 
   if ! command -v 985 &>/dev/null; then
-    echo "985-manager has not been installed. Please Install Manager."
+    echo "985 Manager has not been installed. Please Install Manager."
     read -n 1 -p "Press any key back to menu..."
     start_menu
     return 1
@@ -313,7 +315,7 @@ Stop_Manager(){
   if [[ "${status}" == "online" ]]; then
     985 stop
   else
-    echo -e "${Tip} 985-manager is not running"
+    echo -e "${Tip} 985 Manager is not running"
   fi
 
   read -n 1 -p "Press any key back to menu..."
@@ -333,7 +335,7 @@ echo && echo -e " 985 Manager CLI ${Red_font_prefix}[v${cli_ver}]${Font_color_su
  ${Green_font_prefix}5.${Font_color_suffix} Enabled BBR
  ${Green_font_prefix}6.${Font_color_suffix} System Optimization
  ${Green_font_prefix}7.${Font_color_suffix} Exit
-———————————————————————————————————" && echo
+————————————————————————————————" && echo
 
 	# check_manager_version
 	# if [[ ${manager_version} == "noinstall" ]]; then
