@@ -255,6 +255,8 @@ Uninstall_Manager(){
 		local status=$(985 status 2>/dev/null)
 		if [[ "${status}" =~ "online" ]]; then
 			985 stop
+			pkill -f "manager" 2>/dev/null
+			killall -9 manager 2>/dev/null
 		fi
 	fi
 
@@ -264,6 +266,9 @@ Uninstall_Manager(){
 		start_menu
 		return 0
 	fi
+
+	pkill -f "node" 2>/dev/null
+	killall -9 node 2>/dev/null
 
 	npm uninstall -g 985-manager >/dev/null 2>&1
 
@@ -319,6 +324,8 @@ Stop_Manager(){
 	local status=$(985 status 2>/dev/null)
 	if [[ "${status}" =~ "online" ]]; then
 		985 stop
+		pkill -f "manager" 2>/dev/null
+		killall -9 manager 2>/dev/null
 	else
 		echo -e "${Tip} 985 Manager is not running"
 	fi
