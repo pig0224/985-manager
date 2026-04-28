@@ -333,7 +333,7 @@ echo && echo -e " 985 Manager CLI ${Red_font_prefix}[v${cli_ver}]${Font_color_su
  ${Green_font_prefix}5.${Font_color_suffix} Enabled BBR
  ${Green_font_prefix}6.${Font_color_suffix} System Optimization
  ${Green_font_prefix}7.${Font_color_suffix} Exit
-————————————————————————————————" && echo
+———————————————————————————————————" && echo
 
 	# check_manager_version
 	# if [[ ${manager_version} == "noinstall" ]]; then
