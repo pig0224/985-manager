@@ -371,7 +371,7 @@ case "$num" in
 	;;
 	*)
 	clear
-	echo -e "${Error}:Entry [0-11]"
+	echo -e "${Error}: Please enter the correct number. [0-11]"
 	sleep 5s
 	start_menu
 	;;
