@@ -232,7 +232,7 @@ Install_Manager(){
 
 	if command -v 985 &>/dev/null; then
 		local status=$(985 status 2>/dev/null)
-		if [[ "${status}" == "online" ]]; then
+		if [[ "${status}" =~ "online" ]]; then
 		985 restart
 		else
 		985 start
@@ -253,7 +253,7 @@ Uninstall_Manager(){
 
 	if command -v 985 &>/dev/null; then
 		local status=$(985 status 2>/dev/null)
-		if [[ "${status}" == "online" ]]; then
+		if [[ "${status}" =~ "online" ]]; then
 			985 stop
 		fi
 	fi
@@ -292,7 +292,7 @@ Start_Manager(){
 	fi
 
 	local status=$(985 status 2>/dev/null)
-	if [[ "${status}" != "online" ]]; then
+	if [[ ! "${status}" =~ "online" ]]; then
 		985 start
 	else
 		echo -e "${Tip} 985 Manager is already running"
@@ -317,7 +317,7 @@ Stop_Manager(){
 	fi
 
 	local status=$(985 status 2>/dev/null)
-	if [[ "${status}" == "online" ]]; then
+	if [[ "${status}" =~ "online" ]]; then
 		985 stop
 	else
 		echo -e "${Tip} 985 Manager is not running"
